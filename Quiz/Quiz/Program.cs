@@ -1,4 +1,18 @@
-﻿using System.Text;
+﻿
+using Quiz;
+var game = new Game();
+var messages = new Messages();
+messages.DisplayWelcomeScreen();
+game.CreateQuestions();
 
-// todo => analiza obiektowa wypozyczalni
-// .. i quizu
+// zaczynamy od konstruktora klasy
+
+
+
+
+
+
+
+
+
+
