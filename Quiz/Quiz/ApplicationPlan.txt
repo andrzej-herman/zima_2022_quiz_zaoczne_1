@@ -1,9 +1,9 @@
 ﻿1. Wyświetlamy ekran powitalny. => OK
 2. Rozpoczęcie gry => nacisnij Enter aby zobaczyć pierwsze pytanie. => OK
 3. Utworzyć bazę pytań. => OK
-4. Ustawic kategorię pytania na najniższą możliwą.
-5. Wylosować pytanie z aktualnej kategorii
-6. Wyświetlamy pytanie
+4. Ustawic kategorię pytania na najniższą możliwą. => OK
+5. Wylosować pytanie z aktualnej kategorii => OK
+6. Wyświetlamy pytanie => OK
 7. Pobranie odpowiedzi od użytkownika
 8. Walidacja odpowiedzi użytkownika
 => jeżeli NIEPRAWIDŁOWA

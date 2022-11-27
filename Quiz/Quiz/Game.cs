@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.AccessControl;
@@ -11,47 +12,41 @@ namespace Quiz
     {
         public Game()
         {
+            // tworzymy bazę pytań
+            CreateQuestions();
 
+            // ustawiam bieżaca kategorię na najniższą mozliwą
+            CurrentCategory = 100;
+
+            Random = new Random();
         }
 
+
         public List<Question> Questions { get; set; }
+        public int CurrentCategory { get; set; }
+        public Question CurrentQuestion { get; set; }
+        public Random Random { get; set; }
 
-        public void CreateQuestions()
+
+        private void CreateQuestions()
         {
-            Questions = new List<Question>();   
-            var q = new Question()
+            var path = Directory.GetCurrentDirectory() + "\\questions.json";
+            var text = File.ReadAllText(path);
+            Questions = JsonConvert.DeserializeObject<List<Question>>(text);
+        }
+
+        // losowanie pytanie
+        public void GetQuestion()
+        {
+            var qCC = new List<Question>();
+            foreach (var q in Questions)
             {
-                Id = 1,
-                Category= 100,
-                Content = "Jak miał na imię Eintein?",
-                Answers= new List<Answer>()
-            };
+                if (q.Category == CurrentCategory)
+                    qCC.Add(q);
+            }
 
-            var a1 = new Answer();
-            a1.Id = 1;
-            a1.Content = "Albert";
-            a1.IsCorrect= true;
-            q.Answers.Add(a1);
-            
-            var a2 = new Answer();
-            a2.Id = 2;
-            a2.Content = "Aaron";
-            a2.IsCorrect = false;
-            q.Answers.Add(a2);
-
-            var a3 = new Answer();
-            a3.Id = 3;
-            a3.Content = "Anthony";
-            a3.IsCorrect = false;
-            q.Answers.Add(a3);
-
-            var a4 = new Answer();
-            a4.Id = 4;
-            a4.Content = "Basia";
-            a4.IsCorrect = false;
-            q.Answers.Add(a4);
-
-            Questions.Add(q);
+            var number = Random.Next(0, qCC.Count);
+            CurrentQuestion = qCC[number];
         }
     }
 }
