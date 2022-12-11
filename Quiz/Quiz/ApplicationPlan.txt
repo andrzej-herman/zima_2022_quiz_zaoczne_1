@@ -4,13 +4,45 @@
 4. Ustawic kategorię pytania na najniższą możliwą. => OK
 5. Wylosować pytanie z aktualnej kategorii => OK
 6. Wyświetlamy pytanie => OK
-7. Pobranie odpowiedzi od użytkownika
-8. Walidacja odpowiedzi użytkownika
-=> jeżeli NIEPRAWIDŁOWA
-	9. Plansza GAME OVER
+7. Pobranie odpowiedzi od użytkownika => OK
+8. Walidacja odpowiedzi użytkownika => OK
+=> jeżeli NIEPRAWIDŁOWA => OK
+	9. Plansza GAME OVER =>
 => jeżeli PRAWIDŁOWA
 	9. Sprawdzamy czy to nie była ostatnia kategoria
 	=> TAK => 10. Plansza => WYGRAŁEŚ/AS QUIZ GAME OVER
 	=> NIE => 10. Plansza Brawo
 	11. Podnosimy kategorię na wyższą
-	12. Wracamy do pkt 5.
+	12. Wracamy do pkt 5.'
+
+
+
+	---------------------------------------------
+
+
+	var numbers = new List<int>();
+numbers.Add(45);
+numbers.Add(18);
+numbers.Add(345);
+numbers.Add(98);
+numbers.Add(3);
+numbers.Add(12);
+numbers.Add(563);
+numbers.Add(100);
+
+foreach (var item in numbers)
+{
+    Console.WriteLine(item);
+}
+
+
+Console.WriteLine();
+Console.WriteLine();
+
+var choosen = numbers.Where(x => x < 10).ToList();
+
+Console.WriteLine($"Choosen ma {choosen.Count} elem");
+foreach (var item in choosen)
+{
+    Console.WriteLine(item);
+}

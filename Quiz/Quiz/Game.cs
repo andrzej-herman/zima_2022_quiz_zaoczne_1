@@ -38,15 +38,38 @@ namespace Quiz
         // losowanie pytanie
         public void GetQuestion()
         {
-            var qCC = new List<Question>();
-            foreach (var q in Questions)
+            var qCC = Questions.Where(x => x.Category == CurrentCategory).ToList(); 
+            var number = Random.Next(0, qCC.Count);
+            var question = qCC[number];
+
+            // mieszamy kolejnością odpowiedzi
+            question.Answers = question.Answers.OrderBy(x => Random.Next()).ToList();
+
+            // pętlą for
+            //for (int i = 0; i < question.Answers.Count; i++)
+            //{
+            //    question.Answers[i].ShowOrder = i + 1;
+            //}
+
+            // pętlą foreach
+            var index = 1;
+            foreach (var answer in question.Answers)
             {
-                if (q.Category == CurrentCategory)
-                    qCC.Add(q);
+                answer.ShowOrder = index;
+                index++;
             }
 
-            var number = Random.Next(0, qCC.Count);
-            CurrentQuestion = qCC[number];
+            
+            CurrentQuestion = question;
+        }
+
+
+        // walidacja odpowiedzi gracza
+        // sprawdzamy czy odpowiedział poprawnie
+        public bool CheckPlayerAnswer(int playerNumber)
+        {
+            var answer = CurrentQuestion.Answers.FirstOrDefault(x => x.ShowOrder == playerNumber);
+            return answer.IsCorrect;
         }
     }
 }
