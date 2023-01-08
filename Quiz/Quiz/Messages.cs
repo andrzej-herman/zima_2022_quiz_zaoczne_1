@@ -31,6 +31,29 @@ namespace Quiz
             Console.ForegroundColor = ConsoleColor.White;
         }
 
+        public void FinalScreen()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine();
+            Console.WriteLine("BRAWO, UDAŁO CI SIĘ UKOŃCZYĆ QUIZ !!!");
+            Console.WriteLine("KONIEC GRY !!!");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public void GoodAnswer()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine();
+            Console.WriteLine("Brawo, to prawidłowa odpowiedź ...");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+            Console.WriteLine("Naciśnij ENTER aby wyświetlić następnne pytanie ...");
+            Console.WriteLine();
+            Console.ReadLine();
+
+        }
+
 
     }
 }

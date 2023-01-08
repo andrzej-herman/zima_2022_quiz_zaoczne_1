@@ -14,8 +14,6 @@ namespace Quiz
         public string Content { get; set; }
         public List<Answer> Answers { get; set; }
 
-
-
         private void ShowQuestion()
         {
             Console.WriteLine();

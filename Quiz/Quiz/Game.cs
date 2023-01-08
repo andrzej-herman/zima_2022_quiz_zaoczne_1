@@ -6,6 +6,12 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
+
+// 100, 200, 300, 400, 500, 750, 1000
+
+
+
+
 namespace Quiz
 {
     internal class Game
@@ -19,6 +25,18 @@ namespace Quiz
             CurrentCategory = 100;
 
             Random = new Random();
+
+            //Categories = new List<int> { 100, 200, 300, 400, 500, 750, 1000 };
+
+            Categories = Questions
+                .Select(x => x.Category)
+                .Distinct()
+                .OrderBy(x => x).ToList();
+
+            // 100, 200, 300, 400, 500, 750, 1000
+
+
+
         }
 
 
@@ -26,6 +44,8 @@ namespace Quiz
         public int CurrentCategory { get; set; }
         public Question CurrentQuestion { get; set; }
         public Random Random { get; set; }
+        public List<int> Categories { get; set; }
+        public int CurrentCategoryIndex { get; set; }
 
 
         private void CreateQuestions()
@@ -71,5 +91,19 @@ namespace Quiz
             var answer = CurrentQuestion.Answers.FirstOrDefault(x => x.ShowOrder == playerNumber);
             return answer.IsCorrect;
         }
+
+        // metoda sprawdzająca czy to było ostatnia kategoria
+        public bool IsLastCategory()
+        {
+            if (CurrentCategoryIndex < Categories.Count - 1)
+            {
+                CurrentCategoryIndex++;
+                CurrentCategory = Categories[CurrentCategoryIndex];
+                return false;
+            }
+            
+            return true;
+        }
+
     }
 }
